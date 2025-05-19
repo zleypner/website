@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Anwar Dev Portfolio</title>
+  <title>Anwar Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -40,11 +40,11 @@
       margin-top: 2rem;
     }
     .socials a {
-      background-color: #1f1f1f;
-      border: 2px solid #00e676;
+      background-color: transparent;
       color: #00e676;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      border: 2px solid #00e676;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
       transition: all 0.3s ease;
@@ -55,17 +55,18 @@
     }
     .button-link {
       display: inline-block;
-      margin-top: 1rem;
-      background-color: #00e676;
-      color: #0d0d0d;
-      padding: 0.6rem 1.2rem;
+      background-color: transparent;
+      color: #00e676;
+      border: 2px solid #00e676;
+      padding: 0.5rem 1.2rem;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
     }
     .button-link:hover {
-      background-color: #00c853;
+      background-color: #00e676;
+      color: #0d0d0d;
     }
     footer {
       text-align: center;
@@ -85,9 +86,20 @@
       width: 20px;
       height: 20px;
     }
+  .particle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #00e676;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1000;
+    }
   </style>
 <script src="https://cdn.jsdelivr.net/npm/mouse-follower@1.0.2/dist/mouse-follower.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mouse-follower@1.0.2/dist/mouse-follower.min.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
 </head>
 <body>
 
@@ -118,9 +130,7 @@
       <li>Established CI/CD workflows with GitHub Actions for seamless testing, preview deployment, and production rollouts.</li>
       <li>Collaborated with design and UX teams to refine user flows and accessibility standards.</li>
     </ul>
-  </section>
-
-  <section>
+  </section><section>
     <h2>Freelance & Open Source</h2>
     <p>Throughout my freelance journey, I've also received multiple grants supporting the development of open-source tools and Web3 products.</p>
     <ul>
@@ -132,7 +142,13 @@
       <li>Managed product development lifecycle from MVP to production, applying agile methodologies and stakeholder feedback loops.</li>
       <li>Delivered full-stack solutions with TypeScript, Node.js, Next.js, PostgreSQL, and Tailwind CSS.</li>
     </ul>
-    <div class="button-link">Project Showcase</div>
+</section>
+
+
+
+  <section style="padding: 1rem 2rem 1rem 2rem; max-width: 1000px; margin: auto;">
+    <a class="button-link" href="https://www.linkedin.com/posts/anwardev_ethpuravida-web3-blockchain-activity-7294917650604785664-LkCU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" target="_blank">Read More on LinkedIn</a>
+  </section>
   </section>
 
   <section>
@@ -147,7 +163,7 @@
   </section>
 
   <footer>
-    &copy; 2025 Anwar Dev. All rights reserved.
+    &copy; 2025 Anwar. All rights reserved.
   </footer>
 
   <script>
@@ -182,6 +198,31 @@
       skewingMedia: 4,
       className: 'mf-cursor-green'
     });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // Floating green particle effect using GSAP
+  for (let i = 0; i < 15; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    document.body.appendChild(particle);
+
+    gsap.set(particle, {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      scale: Math.random() * 0.5 + 0.5
+    });
+
+    gsap.to(particle, {
+      duration: Math.random() * 10 + 5,
+      x: 'random(0, ' + window.innerWidth + ')',
+      y: 'random(0, ' + window.innerHeight + ')',
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+  }
 </script>
 </body>
 </html>
