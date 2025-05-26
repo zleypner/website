@@ -11,105 +11,405 @@
     * {
       box-sizing: border-box;
     }
+    
     body {
       margin: 0;
       padding: 0;
       font-family: 'Roboto Mono', monospace;
-      background-color: #0d0d0d;
+      background: linear-gradient(-45deg, #0a0a0a, #0d0d0d, #111111, #0d0d0d);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       color: #e0ffe0;
       line-height: 1.6;
+      overflow-x: hidden;
     }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Hero section with typewriter effect */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      opacity: 0;
+      animation: heroFadeIn 2s ease-out 0.5s forwards;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+    }
+
+    .typewriter {
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: #00e676;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border-right: 3px solid #00e676;
+      white-space: nowrap;
+      animation: typing 3s steps(20) 1s forwards, blink 1s infinite 4s;
+      width: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 50% { border-color: #00e676; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    /* Floating background elements */
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #00e676;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-100px) rotate(180deg); opacity: 0.8; }
+    }
+
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
       margin: auto;
-      animation: fadeIn 1s ease-in-out;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     h1, h2, h3 {
       color: #00e676;
       margin-bottom: 1rem;
+      position: relative;
     }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00e676, transparent);
+      transition: width 0.8s ease-out;
+    }
+
+    section.visible h2::after {
+      width: 100%;
+    }
+
+    /* Enhanced list animations */
     ul {
-      list-style-type: square;
-      padding-left: 1.5rem;
+      list-style-type: none;
+      padding-left: 0;
     }
+
+    li {
+      position: relative;
+      padding: 0.5rem 0 0.5rem 2rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.5s ease-out;
+    }
+
+    section.visible li {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    li:nth-child(1) { transition-delay: 0.1s; }
+    li:nth-child(2) { transition-delay: 0.2s; }
+    li:nth-child(3) { transition-delay: 0.3s; }
+    li:nth-child(4) { transition-delay: 0.4s; }
+    li:nth-child(5) { transition-delay: 0.5s; }
+    li:nth-child(6) { transition-delay: 0.6s; }
+    li:nth-child(7) { transition-delay: 0.7s; }
+    li:nth-child(8) { transition-delay: 0.8s; }
+
+    li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: #00e676;
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover::before {
+      transform: translateX(5px);
+    }
+
+    /* Enhanced social links */
     .socials {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
       margin-top: 2rem;
     }
+
     .socials a {
       background-color: transparent;
       color: #00e676;
       border: 2px solid #00e676;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(0);
     }
+
+    .socials a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 230, 118, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .socials a:hover::before {
+      left: 100%;
+    }
+
     .socials a:hover {
       background-color: #00e676;
       color: #0d0d0d;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 230, 118, 0.3);
     }
+
+    /* Enhanced button links */
     .button-link {
       display: inline-block;
       background-color: transparent;
       color: #00e676;
       border: 2px solid #00e676;
-      padding: 0.5rem 1.2rem;
-      border-radius: 6px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
-      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      margin: 1rem 0;
     }
+
+    .button-link::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.1) 0%, transparent 70%);
+      transition: all 0.4s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .button-link:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
     .button-link:hover {
       background-color: #00e676;
       color: #0d0d0d;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 230, 118, 0.3);
     }
+
+    /* Glitch effect for name */
+    .glitch {
+      position: relative;
+      color: #ffffff;
+      display: inline-block;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .glitch::before {
+      animation: glitch-1 0.5s infinite;
+      color: #ff0040;
+      z-index: -1;
+    }
+
+    .glitch::after {
+      animation: glitch-2 0.5s infinite;
+      color: #00ffff;
+      z-index: -2;
+    }
+
+    @keyframes glitch-1 {
+      0%, 14%, 15%, 49%, 50%, 99%, 100% { transform: translate(0); }
+      15%, 49% { transform: translate(-2px, 2px); }
+    }
+
+    @keyframes glitch-2 {
+      0%, 20%, 21%, 62%, 63%, 99%, 100% { transform: translate(0); }
+      21%, 62% { transform: translate(2px, -2px); }
+    }
+
+    /* Progress bars for skills */
+    .skill-bar {
+      width: 100%;
+      height: 6px;
+      background: rgba(0, 230, 118, 0.1);
+      border-radius: 3px;
+      margin: 0.5rem 0;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #00e676, #00ff88);
+      border-radius: 3px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    section.visible .skill-progress {
+      width: var(--progress, 0%);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00e676, #00ff88);
+      z-index: 1000;
+      transition: width 0.1s ease;
+    }
+
     footer {
       text-align: center;
       padding: 2rem 1rem;
-      background-color: #121212;
+      background: linear-gradient(135deg, #121212, #0a0a0a);
       color: #aaaaaa;
       font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #00e676, transparent);
+      animation: footerGlow 3s ease-in-out infinite;
     }
-  .mf-cursor-green {
-      background-color: rgba(0, 255, 100, 0.2);
-      border: 2px solid #00e676;
-      box-shadow: 0 0 20px #00e676;
-      width: 20px;
-      height: 20px;
+
+    @keyframes footerGlow {
+      0% { left: -100%; }
+      100% { left: 100%; }
     }
-  .particle {
+
+    /* Custom cursor trail */
+    .cursor-trail {
       position: fixed;
       width: 6px;
       height: 6px;
-      border-radius: 50%;
       background: #00e676;
-      opacity: 0.5;
+      border-radius: 50%;
       pointer-events: none;
-      z-index: 1000;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .socials {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .typewriter {
+        font-size: 2rem;
+      }
     }
   </style>
-<script src="https://cdn.jsdelivr.net/npm/mouse-follower@1.0.2/dist/mouse-follower.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mouse-follower@1.0.2/dist/mouse-follower.min.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
 </head>
 <body>
+  <div class="scroll-indicator"></div>
+  
+  <!-- Cursor trail elements -->
+  <div class="cursor-trail"></div>
+  <div class="cursor-trail"></div>
+  <div class="cursor-trail"></div>
+  <div class="cursor-trail"></div>
+  <div class="cursor-trail"></div>
 
-  <section>
-    <h1>Hi, I'm <span style="color: #ffffff">Anwar</span></h1>
-    <p>Full Stack Developer with 4+ years of experience, specializing in JavaScript, TypeScript, React, and scalable web architectures. I'm passionate about open-source, blockchain development, and impactful software engineering. I thrive as a product engineer, building solutions from concept to launch. I love leading initiatives, mentoring junior developers, and sharing my knowledge in the communities and open-source projects I'm part of.</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/anwardev/" target="_blank">LinkedIn</a>
-      <a href="https://x.com/anwar_zlcr" target="_blank">X</a>
-      <a href="https://github.com/zleypner" target="_blank">GitHub</a>
+  <section class="hero">
+    <div class="floating-elements"></div>
+    <div class="hero-content">
+      <h1 class="typewriter">Hi, I'm <span class="glitch" data-text="Anwar">Anwar</span></h1>
+      <p>Full Stack Developer with 4+ years of experience, specializing in JavaScript, TypeScript, React, and scalable web architectures. I'm passionate about open-source, blockchain development, and impactful software engineering. I thrive as a product engineer, building solutions from concept to launch. I love leading initiatives, mentoring junior developers, and sharing my knowledge in the communities and open-source projects I'm part of.</p>
+      <div class="socials">
+        <a href="https://www.linkedin.com/in/anwardev/" target="_blank">LinkedIn</a>
+        <a href="https://x.com/anwar_zlcr" target="_blank">X</a>
+        <a href="https://github.com/zleypner" target="_blank">GitHub</a>
+      </div>
     </div>
   </section>
 
@@ -130,7 +430,9 @@
       <li>Established CI/CD workflows with GitHub Actions for seamless testing, preview deployment, and production rollouts.</li>
       <li>Collaborated with design and UX teams to refine user flows and accessibility standards.</li>
     </ul>
-  </section><section>
+  </section>
+
+  <section>
     <h2>Freelance & Open Source</h2>
     <p>Throughout my freelance journey, I've also received multiple grants supporting the development of open-source tools and Web3 products.</p>
     <ul>
@@ -142,13 +444,7 @@
       <li>Managed product development lifecycle from MVP to production, applying agile methodologies and stakeholder feedback loops.</li>
       <li>Delivered full-stack solutions with TypeScript, Node.js, Next.js, PostgreSQL, and Tailwind CSS.</li>
     </ul>
-</section>
-
-
-
-  <section style="padding: 1rem 2rem 1rem 2rem; max-width: 1000px; margin: auto;">
     <a class="button-link" href="https://www.linkedin.com/posts/anwardev_ethpuravida-web3-blockchain-activity-7294917650604785664-LkCU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" target="_blank">Read More on LinkedIn</a>
-  </section>
   </section>
 
   <section>
@@ -161,7 +457,8 @@
     </ul>
     <a class="button-link" href="https://www.linkedin.com/posts/anwardev_a-couple-of-months-ago-i-had-the-privilege-activity-7281353038961762306-vwMb?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" target="_blank">Read More on LinkedIn</a>
   </section>
-   <section>
+
+  <section>
     <h2>Self-Awareness & Leadership</h2>
     <p><strong>All-Team Meeting, Orlando | Mar 2025</strong></p>
     <ul>
@@ -177,62 +474,129 @@
   </footer>
 
   <script>
-    // Add subtle scroll-based animation
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
+    // Enhanced scroll animations with Intersection Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
+          entry.target.classList.add('visible');
         }
       });
-    }, {
-      threshold: 0.1
-    });
+    }, observerOptions);
 
-    sections.forEach(section => {
-      section.style.opacity = 0;
-      section.style.transform = 'translateY(50px)';
-      section.style.transition = 'all 0.6s ease-out';
+    document.querySelectorAll('section').forEach(section => {
       observer.observe(section);
     });
+
+    // Scroll progress indicator
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      document.querySelector('.scroll-indicator').style.width = scrollPercent + '%';
+    });
+
+    // Create floating background elements
+    function createFloatingElements() {
+      const container = document.querySelector('.floating-elements');
+      for (let i = 0; i < 20; i++) {
+        const element = document.createElement('div');
+        element.className = 'floating-element';
+        element.style.left = Math.random() * 100 + '%';
+        element.style.top = Math.random() * 100 + '%';
+        element.style.animationDelay = Math.random() * 8 + 's';
+        element.style.animationDuration = (Math.random() * 10 + 8) + 's';
+        container.appendChild(element);
+      }
+    }
+
+    // Cursor trail effect
+    const trails = document.querySelectorAll('.cursor-trail');
+    let mouseX = 0, mouseY = 0;
+    let trailX = [], trailY = [];
+
+    for (let i = 0; i < trails.length; i++) {
+      trailX[i] = 0;
+      trailY[i] = 0;
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function animateTrail() {
+      let lag = 1;
+      
+      for (let i = 0; i < trails.length; i++) {
+        trailX[i] += (mouseX - trailX[i]) / (lag * (i + 1));
+        trailY[i] += (mouseY - trailY[i]) / (lag * (i + 1));
+        
+        trails[i].style.left = trailX[i] + 'px';
+        trails[i].style.top = trailY[i] + 'px';
+        trails[i].style.opacity = 1 - (i * 0.2);
+        trails[i].style.transform = `scale(${1 - (i * 0.1)})`;
+      }
+      
+      requestAnimationFrame(animateTrail);
+    }
+
+    // Show cursor trails on mouse enter
+    document.addEventListener('mouseenter', () => {
+      trails.forEach(trail => trail.style.opacity = '1');
+    });
+
+    // Hide cursor trails on mouse leave
+    document.addEventListener('mouseleave', () => {
+      trails.forEach(trail => trail.style.opacity = '0');
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Initialize effects
+    createFloatingElements();
+    animateTrail();
+
+    // Typewriter effect completion handler
+    setTimeout(() => {
+      document.querySelector('.typewriter').style.borderRight = 'none';
+    }, 5000);
+
+    // Add hover effects to sections
+    document.querySelectorAll('section').forEach(section => {
+      section.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+      });
+      
+      section.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
   </script>
-
-<script>
-    const cursor = new MouseFollower({
-      el: null,
-      container: document.body,
-      speed: 0.5,
-      ease: 'expo.out',
-      skewingText: 2,
-      skewingMedia: 4,
-      className: 'mf-cursor-green'
-    });
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script>
-  // Floating green particle effect using GSAP
-  for (let i = 0; i < 15; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    document.body.appendChild(particle);
-
-    gsap.set(particle, {
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      scale: Math.random() * 0.5 + 0.5
-    });
-
-    gsap.to(particle, {
-      duration: Math.random() * 10 + 5,
-      x: 'random(0, ' + window.innerWidth + ')',
-      y: 'random(0, ' + window.innerHeight + ')',
-      repeat: -1,
-      yoyo: true,
-      ease: 'sine.inOut'
-    });
-  }
-</script>
 </body>
 </html>
