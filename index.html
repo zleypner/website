@@ -1035,7 +1035,27 @@
   </style>
 </head>
 <body>
-  <section class="hero">
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#home"></a>
+      </div>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#milestones" class="nav-link">Milestones</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="assets/Anwar Sanchez CV Full Stack.pdf" class="nav-link resume-btn" download="Anwar_Sanchez_CV_Full_Stack.pdf">Resume</a>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="home">
     <div>
       <h1 class="typewriter">Hi, I'm <span class="glitch" data-text="Anwar">Anwar</span></h1>
       <p class="typewriter-subtitle">Full-Stack Software Engineer</p>
@@ -1231,17 +1251,35 @@
       <div class="image-wrapper">
         <img src="assets/may2025.jpg" alt="Starknet Ignite Hackathon Main Event" class="event-image">
       </div>
-      <div class="image-wrapper">
-        <img src="assets/may01-2025.jpg" alt="Starknet Ignite Hackathon Day 1" class="event-image">
+
+      <!-- Start Up House Nosara -->
+      <div class="milestone-card">
+        <div class="milestone-image-container">
+          <img src="assets/nosarastartup.jpg" alt="Start Up House Nosara July 2025" class="milestone-image">
+        </div>
+        <div class="milestone-header">
+          <h3 class="milestone-title">Start Up House Nosara</h3>
+          <span class="milestone-type">Residency</span>
+        </div>
+        <div class="milestone-meta">July 2025 • Nosara, Costa Rica</div>
+        <p class="milestone-description">
+          Immersive startup residency program focused on building and scaling innovative solutions in a collaborative environment.
+        </p>
+        <div class="milestone-achievements">
+          <h4>Key Achievements:</h4>
+          <ul>
+            <li>Developed innovative solutions in collaborative environment</li>
+            <li>Built strong network of entrepreneurs and developers</li>
+            <li>Contributed to startup ecosystem development</li>
+          </ul>
+        </div>
+        <div class="milestone-tech">
+          <span class="tech-badge">Startup</span>
+          <span class="tech-badge">Innovation</span>
+          <span class="tech-badge">Collaboration</span>
+        </div>
+        <a href="https://www.linkedin.com/posts/anwardev_i-had-the-privilege-of-spending-a-full-week-activity-7369182869656711169-iVeO?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" class="milestone-link" target="_blank">Read More</a>
       </div>
-    </div>
-    <ul>
-      <li>Mentored development teams at Central America's largest blockchain hackathon, guiding Web3 and AI-powered solution development.</li>
-      <li>Provided technical guidance on Starknet ecosystem implementations and smart contract architecture.</li>
-      <li>Evaluated innovative projects addressing real-world problems through decentralized technologies.</li>
-    </ul>
-    <a class="button-link" href="https://www.linkedin.com/posts/anwardev_hackathon-mentorship-web3-activity-7335720422899937282-M_00?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" target="_blank">Read More on LinkedIn</a>
-  </section>
 
 
   <footer id="contact">
