@@ -334,13 +334,24 @@
       opacity: 0.7;
     }
 
+    /* Section arrow indicator (non-absolute) for inline placement */
+    .section-indicator {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.75rem;
+      opacity: 0.7;
+    }
+
+    /* Ensure inline arrows bounce vertically without horizontal shift */
+    .section-indicator .scroll-arrow { animation: bounceY 2s infinite; }
+
     .scroll-arrow {
       width: 0;
       height: 0;
       border-left: 12px solid transparent;
       border-right: 12px solid transparent;
       border-top: 16px solid #00FF99;
-      animation: bounce 2s infinite;
+  animation: bounce 2s infinite;
       filter: drop-shadow(0 0 4px rgba(0, 255, 153, 0.3));
     }
 
@@ -355,6 +366,13 @@
       60% {
         transform: translateX(-50%) translateY(-8px);
       }
+    }
+
+    /* Vertical-only bounce (no translateX) for centered inline arrows */
+    @keyframes bounceY {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); }
+      60% { transform: translateY(-8px); }
     }
 
     @keyframes gradientGlow {
@@ -568,11 +586,13 @@
       .image-grid { grid-template-columns: 1fr; }
       .image-grid-single { max-width: 80%; }
       .event-image { height: 200px; }
+      .milestone-image { max-height: 250px; }
     }
 
     @media (max-width: 480px) {
       .image-grid-single { max-width: 100%; }
       .event-image { height: 150px; }
+      .milestone-image { max-height: 200px; }
     }
 
     /* Projects Section Styles */
@@ -823,8 +843,10 @@
 
     .milestone-image {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      object-position: center;
       border-radius: 8px;
       margin-bottom: 1.5rem;
       opacity: 0;
@@ -1061,15 +1083,15 @@
       <p class="typewriter-subtitle">Full-Stack Software Engineer</p>
       
       <p class="hero-description">I´m driven by the challenge of building products that make people's lives easier.</p>
-      <p class="hero-description">I love sharing my knowledge, collaborating with teams, and continuously improving as a developer.</p>
-      <p class="hero-description">I build tools that create real opportunities, sharing knowledge, mentoring others, and collaborating with startup founders and builders to turn ideas into impact.</p>
+      <p class="hero-description">I love sharing my knowledge, collaborating with teams, and continuously improving as a developer—mentoring others and working with startup founders and builders to turn ideas into real impact.</p>
+      
       
       <div class="socials">
         <a href="https://www.linkedin.com/in/anwardev/" target="_blank">💼 LinkedIn</a>
         <a href="https://x.com/anwar_zlcr" target="_blank">𝕏 X</a>
         <a href="https://github.com/zleypner" target="_blank">⚡ GitHub</a>        
-        <a href="https://github.com/zleypner" target="_blank">📷 Instagram</a>
-        <a href="https://github.com/zleypner" target="_blank">✈️ Telegram</a>
+        <a href="https://instagram.com/anwar.zl" target="_blank">📷 Instagram</a>
+        <a href="https://t.me/anwar_crzl" target="_blank">✈️ Telegram</a>
 
       </div>
       
@@ -1082,7 +1104,6 @@
 
   <section id="projects" class="projects-section">
     <h2 class="projects-heading">Projects</h2>
-    <p class="projects-subtitle">More on <a href="https://github.com/zleypner" target="_blank" class="github-link">GitHub</a></p>
     
     <div class="projects-grid">
       <!-- Money Momentum Project -->
@@ -1120,6 +1141,10 @@
           <a href="https://github.com/zleypner/Auth-Dashboard-App-React-Node-Express-JWT-" class="project-btn" target="_blank">Code</a>
         </div>
       </div>
+    </div>
+    <p class="projects-subtitle">More on <a href="https://github.com/zleypner" target="_blank" class="github-link">GitHub</a></p>
+    <div class="section-indicator">
+      <div class="scroll-arrow"></div>
     </div>
   </section>
 
@@ -1164,7 +1189,7 @@
         </div>
         <div class="milestone-header">
           <h3 class="milestone-title">Ethereum Core Research Workshop</h3>
-          <span class="milestone-type">Conference</span>
+          <span class="milestone-type">Discussion</span>
         </div>
         <div class="milestone-meta">November 2024 • International</div>
         <p class="milestone-description">
@@ -1255,16 +1280,17 @@
           <h3 class="milestone-title">Start Up House Nosara</h3>
           <span class="milestone-type">Residency</span>
         </div>
-        <div class="milestone-meta">July 2025 • Nosara, Costa Rica</div>
+        <div class="milestone-meta"> July 2025 · Nosara, Costa Rica</div>
         <p class="milestone-description">
-          Immersive startup residency program focused on building and scaling innovative solutions in a collaborative environment.
+          7-day immersive startup residency featuring 8 hours of daily mentorship from top experts in marketing, AI, and emerging technologies — followed by hands-on product building for a final hackathon demo.
         </p>
         <div class="milestone-achievements">
           <h4>Key Achievements:</h4>
           <ul>
-            <li>Developed innovative solutions in collaborative environment</li>
-            <li>Built strong network of entrepreneurs and developers</li>
-            <li>Contributed to startup ecosystem development</li>
+            <li>Built and launched a product prototype under time constraints</li>
+            <li>Received expert guidance from leaders in AI, marketing, and tech</li>
+            <li>Formed lasting collaborations with entrepreneurs and developers</li>
+            <li>Contributed to the local and regional startup ecosystem</li>
           </ul>
         </div>
         <div class="milestone-tech">
@@ -1273,6 +1299,37 @@
           <span class="tech-badge">Collaboration</span>
         </div>
         <a href="https://www.linkedin.com/posts/anwardev_i-had-the-privilege-of-spending-a-full-week-activity-7369182869656711169-iVeO?utm_source=share&utm_medium=member_desktop&rcm=ACoAADqiwowBuMywTok_I-3zvuR4oARA8wxa3q4" class="milestone-link" target="_blank">Read More</a>
+      </div>
+
+      <!-- Blockchain After Office Stellar Ambassador -->
+      <div class="milestone-card">
+        <div class="milestone-image-container">
+          <img src="assets/Stellar.jpg" alt="Blockchain After Office Stellar Ambassador September 2025" class="milestone-image">
+        </div>
+        <div class="milestone-header">
+          <h3 class="milestone-title">Blockchain After Office · Stellar Ambassador</h3>
+          <span class="milestone-type">Ambassadorship</span>
+        </div>
+        <div class="milestone-meta"> September 2025 · San José, Costa Rica</div>
+        <p class="milestone-description">
+          As a Stellar Ambassador, I participate in regional events guiding and educating curious about blockchain — helping them understand its real-world applications and impact.
+        </p>
+        <div class="milestone-achievements">
+          <h4>Key Highlights:</h4>
+          <ul>
+            <li>Shared insights and experiences with founders, developers, and ecosystem leaders</li>
+            <li>Promoted blockchain education and community-driven innovation</li>
+            <li>Represented Stellar's mission to empower LATAM through technology and inclusion</li>
+            <li>Strengthened local collaborations and inspired new builders to join the ecosystem</li>
+          </ul>
+        </div>
+        <div class="milestone-tech">
+          <span class="tech-badge">Stellar</span>
+          <span class="tech-badge">Blockchain</span>
+          <span class="tech-badge">Education</span>
+          <span class="tech-badge">Community</span>
+        </div>
+        <a href="https://x.com/anwar_zlcr/status/1974647108054434260" class="milestone-link" target="_blank">Read More</a>
       </div>
 
       <!-- Start Up House Argentina -->
@@ -1325,7 +1382,7 @@
           <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
         </svg>
       </a>
-      <a href="https://instagram.com/anwar.crzl" class="footer-social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+      <a href="https://instagram.com/anwar.zl" class="footer-social-icon" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00FF99" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
           <circle cx="12" cy="12" r="4"></circle>
